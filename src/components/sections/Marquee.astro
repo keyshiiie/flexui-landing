@@ -1,0 +1,26 @@
+---
+const items = [
+  'UI/UX Design',
+  'Web Development',
+  'Digital Agency',
+  'Brand Identity',
+];
+
+// Дублируем массив, чтобы строка была бесконечной
+const repeatedItems = [...items, ...items];
+---
+
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {repeatedItems.map((item, index) => (
+      <div class="marquee__item">
+        <span class="marquee__text">{item}</span>
+        <span class="marquee__star">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </div>
+    ))}
+  </div>
+</section>

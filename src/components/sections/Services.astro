@@ -1,0 +1,66 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro';
+import ServicesSpiral from '../../assets/images/services-spiral.svg';
+import card1 from '../../assets/icons/services-card-1.svg';
+import card2 from '../../assets/icons/services-card-2.svg';
+import card3 from '../../assets/icons/services-card-3.svg';
+import card4 from '../../assets/icons/services-card-4.svg';
+
+const services = [
+  {
+    icon: card1,
+    title: 'Your Shortcut to A Unique Identity',
+    description:
+      'Our branding process encompasses logo creation, visual storytelling, and comprehensive brand guidelines, ensuring a memorable identity that aligns with your vision',
+  },
+  {
+    icon: card2,
+    title: 'Your Shortcut to Appealing Design',
+    description:
+      'Our design expertise spans UX/UI best practices, mobile-responsive layouts, and conversion-optimized interfaces, ensuring your digital touchpoints captivate and convert',
+  },
+  {
+    icon: card3,
+    title: 'Your Shortcut to Seamless Performance',
+    description:
+      'Expertly crafted in Webflow, our development solutions ensure robust, fast-loading sites with intuitive content management and seamless integrations',
+  },
+  {
+    icon: card4,
+    title: 'Your Shortcut to Top Visibility',
+    description:
+      'Our SEO strategies cover meticulous keyword research, on-page optimization, authoritative link building, and technical audits, propelling your site to the forefront of search results',
+  },
+];
+---
+
+<section class="services">
+  <div class="services__container">
+    <!-- Header -->
+    <div class="services__header">
+      <img
+        src={ServicesSpiral.src}
+        alt=""
+        class="services__spiral"
+        aria-hidden="true"
+        width="160"
+        height="160"
+      />
+      <h2 class="services__title">
+        Excellence across multiple disciplines<br />
+        We <div class="highlight"><span class="highlight-text">Specialize</span></div>
+      </h2>
+    </div>
+
+    <!-- Grid -->
+    <div class="services__grid">
+      {services.map((service) => (
+        <ServiceCard
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+        />
+      ))}
+    </div>
+  </div>
+</section>

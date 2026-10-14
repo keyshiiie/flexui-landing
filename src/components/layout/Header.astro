@@ -1,0 +1,112 @@
+---
+const navItems = [
+  {
+    label: 'Products',
+    href: '/products',
+    children: [
+      { label: 'SaaS Solutions', href: '/products/saas' },
+      { label: 'Webflow Templates', href: '/products/templates' },
+      { label: 'UI Kits', href: '/products/ui-kits' },
+    ],
+  },
+  {
+    label: 'Assets',
+    href: '/assets',
+    children: [
+      { label: 'Blog', href: '/assets/blog' },
+      { label: 'Case Studies', href: '/assets/cases' },
+      { label: 'Guides', href: '/assets/guides' },
+    ],
+  },
+  {
+    label: 'Support',
+    href: '/support',
+    children: [
+      { label: 'FAQ', href: '/support/faq' },
+      { label: 'Contact Support', href: '/support/contact' },
+      { label: 'System Status', href: '/support/status' },
+    ],
+  },
+  {
+    label: 'Company',
+    href: '/company',
+    children: [
+      { label: 'About Us', href: '/company/about' },
+      { label: 'Team', href: '/company/team' },
+      { label: 'Careers', href: '/company/careers' },
+      { label: 'Contacts', href: '/company/contacts' },
+    ],
+  },
+  { label: 'About', href: '/about', children: null },
+];
+
+const logoIcon = `
+<svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.58374 3.58374C12.2148 12.7495 26.7842 12.7495 35.4153 3.58374" stroke="#191919" stroke-width="5.07051" stroke-linecap="square"/>
+  <path d="M2.5979 20.4854H36.4013" stroke="#191919" stroke-width="5.07051" stroke-linecap="square"/>
+  <path d="M3.58374 37.3872C12.2148 28.2214 26.7842 28.2214 35.4153 37.3872" stroke="#191919" stroke-width="5.07051" stroke-linecap="square"/>
+</svg>
+`;
+
+const arrowIcon = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.5 8.25L12 15.75L4.5 8.25" stroke="#191919" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+---
+
+<header class="header">
+  <div class="header__container">
+    <!-- Логотип -->
+    <a href="/" class="header__logo" aria-label="FlexUI — Home">
+      <span class="header__logo-icon" set:html={logoIcon}></span>
+      <span class="header__logo-text">FlexUI</span>
+    </a>
+
+    <!-- Навигация -->
+    <nav class="header__nav" aria-label="Main navigation">
+      <ul class="header__nav-list">
+        {navItems.map((item) => (
+          <li class="header__nav-item">
+            <a href={item.href} class="header__nav-link">
+              {item.label}
+              {item.children && (
+                <span class="header__nav-arrow" set:html={arrowIcon}></span>
+              )}
+            </a>
+
+            {item.children && (
+              <ul class="header__dropdown">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} class="header__dropdown-link">
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Кнопки справа -->
+    <div class="header__actions">
+      <a href="/how-it-works" class="header__link">How it Work</a>
+      <a href="/contact" class="header__cta">Contact Us</a>
+    </div>
+
+    <!-- Бургер для мобильных -->
+    <button
+      class="header__burger"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,100 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.marquee {
+  position: relative;
+  width: 100%;
+  background-color: $color-dark;
+  padding: 32px 0;
+  overflow: hidden;
+  transform: rotate(-2deg);
+  margin: 0px -20px;
+  width: calc(100% + 40px);
+
+  // Скрываем горизонтальный скролл
+  @include mobile-down {
+    padding: 16px 0;
+    margin: 24px -10px;
+    width: calc(100% + 20px);
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: $gap-xl;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+
+    // Пауза при наведении (опционально)
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    @include mobile-down {
+      gap: $gap-lg;
+      animation-duration: 20s;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $gap-xl;
+    flex-shrink: 0;
+
+    @include mobile-down {
+      gap: $gap-lg;
+    }
+  }
+
+  &__text {
+    font-size: $fs-h3;
+    font-weight: $fw-light;
+    color: $color-white;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    @include tablet-down {
+      font-size: 18px;
+    }
+
+    @include mobile-down {
+      font-size: 14px;
+    }
+  }
+
+  &__star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    flex-shrink: 0;
+
+    svg {
+      width: 20px;
+      height: 20px;
+
+      @include tablet-down {
+        width: 16px;
+        height: 16px;
+      }
+
+      @include mobile-down {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+// ============================================
+// АНИМАЦИЯ
+// ============================================
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

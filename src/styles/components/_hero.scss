@@ -1,0 +1,151 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.hero {
+  position: relative;
+  padding: 70px 0 120px 0;
+  overflow: hidden;
+
+  &__container {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $gap-xl;
+    align-items: center;
+    position: relative;
+
+    @include tablet-down {
+      grid-template-columns: 1fr;
+      gap: $gap-lg;
+    }
+  }
+
+  // ============================================
+  // ЛЕВАЯ КОЛОНКА — ВИЗУАЛ
+  // ============================================
+  &__visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__spiral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    color: $color-dark;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__photo-wrapper {
+    position: relative;
+    bottom: 2%;
+    left: -9%;
+    width: 48%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    }
+
+    &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);  // сначала обесцвечиваем
+    }
+
+    &__photo-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: $color-bg;
+    mix-blend-mode: multiply;      
+    pointer-events: none;          
+    }
+
+  &__star--left {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 94px;
+    height: auto;
+    color: $color-dark;
+    z-index: 3;
+  }
+
+  // ============================================
+  // ПРАВАЯ КОЛОНКА — КОНТЕНТ
+  // ============================================
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-lg;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__title {
+    @include heading($fs-h1, $fw-regular);
+    line-height: 1.4;
+    max-width: 630px;
+
+    @include tablet-down {
+      font-size: 48px;
+    }
+
+    @include mobile-down {
+      font-size: 36px;
+    }
+  }
+
+  &__description {
+    font-size: $fs-h4;
+    font-weight: $fw-regular;
+    color: $color-dark;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $gap-sm;
+  }
+
+  &__link {
+    @include cta-link;
+  }
+
+  &__cta {
+    @include cta-button;
+  }
+
+  // ============================================
+  // ПРАВАЯ ЗВЕЗДА (декор в углу)
+  // ============================================
+  &__star--right {
+    position: absolute;
+    top: 14%;
+    right: 3%;
+    width: 80px;
+    height: 80px;
+    color: $color-dark;
+
+    @include mobile-down {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.hero__title .highlight:first-child {
+  transform: rotate(-2deg);
+}
+
+.hero__title .highlight:last-child {
+  transform: rotate(2deg);
+}

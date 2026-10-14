@@ -1,0 +1,149 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  background-color: $color-bg;
+  border-top: 1px solid $color-dark-10;
+
+  &__container {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: $gap-xl;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    align-items: start;
+
+    @include tablet-down {
+      grid-template-columns: 1fr;
+      gap: $gap-lg;
+      padding-top: 48px;
+      padding-bottom: 48px;
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: $fw-semibold;
+    font-size: 20px;
+    color: $color-dark;
+
+    @include tablet-down {
+      justify-content: center;
+    }
+  }
+
+  &__logo-icon {
+    font-size: 24px;
+  }
+
+  &__tagline {
+    font-size: $fs-small;
+    color: $color-dark-80;
+  }
+
+  &__nav-list {
+    display: flex;
+    gap: $gap-md;
+    flex-wrap: wrap;
+
+    @include tablet-down {
+      justify-content: center;
+    }
+  }
+
+  &__nav-link {
+    font-size: $fs-small;
+    color: $color-dark;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include tablet-down {
+      align-items: center;
+    }
+  }
+
+  &__socials-title {
+    font-size: $fs-small;
+    color: $color-dark-80;
+  }
+
+  &__socials-list {
+    display: flex;
+    gap: 12px;
+
+    @include tablet-down {
+      justify-content: center;
+    }
+  }
+
+  &__social-link {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    background-color: $color-dark;
+    color: $color-white;
+    border-radius: $radius-sm;
+    font-size: $fs-tiny;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid $color-dark-10;
+  }
+
+  &__bottom-container {
+    @include container;
+    @include flex-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @include tablet-down {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+
+  &__copyright {
+    font-size: $fs-tiny;
+    color: $color-dark-80;
+  }
+
+  &__legal {
+    display: flex;
+    gap: $gap-md;
+  }
+
+  &__legal-link {
+    font-size: $fs-tiny;
+    color: $color-dark-80;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}

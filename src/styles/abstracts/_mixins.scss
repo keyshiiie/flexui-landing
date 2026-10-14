@@ -1,0 +1,138 @@
+// Подключаем переменные — с префиксом, чтобы не было конфликтов
+@use 'variables' as *;
+// или: @use 'variables' as v;  — и тогда писать v.$bp-tablet
+
+// ============================================
+// МЕДИА-ЗАПРОСЫ
+// ============================================
+@mixin wide-down {
+  @media (max-width: #{$bp-wide - 1}) { @content; }
+}
+
+@mixin desktop-down {
+  @media (max-width: #{$bp-desktop - 1}) { @content; }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$bp-tablet - 1}) { @content; }
+}
+
+@mixin mobile-down {
+  @media (max-width: #{$bp-mobile - 1}) { @content; }
+}
+
+@mixin desktop-up {
+  @media (min-width: $bp-desktop) { @content; }
+}
+
+// ============================================
+// КОНТЕЙНЕР
+// ============================================
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// ============================================
+// ВЕРТИКАЛЬНЫЕ ОТСТУПЫ СЕКЦИЙ
+// ============================================
+@mixin section-padding {
+  padding-top: $section-py-desktop;
+  padding-bottom: $section-py-desktop;
+
+  @include tablet-down {
+    padding-top: $section-py-tablet;
+    padding-bottom: $section-py-tablet;
+  }
+
+  @include mobile-down {
+    padding-top: $section-py-mobile;
+    padding-bottom: $section-py-mobile;
+  }
+}
+
+// ============================================
+// FLEX-ХЕЛПЕРЫ
+// ============================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ============================================
+// ТЕКСТ
+// ============================================
+@mixin heading($size: $fs-h2, $weight: $fw-semibold) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lh-heading;
+  letter-spacing: -0.02em;
+}
+
+@mixin body-text($size: $fs-body) {
+  font-size: $size;
+  font-weight: $fw-regular;
+  line-height: $lh-body;
+}
+
+
+// ============================================
+// ВИЗУАЛЬНЫЕ ЭФФЕКТЫ
+// ============================================
+@mixin hover-lift {
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba($color-dark, 0.12);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ============================================
+// CTA кнопки
+// ============================================
+@mixin cta-link {
+  font-size: $fs-h5;
+  font-weight: $fw-medium;
+  color: $color-dark;
+  transition: opacity $transition-fast;
+
+    &:hover {
+    opacity: 0.6;
+  }
+}
+
+@mixin cta-button {
+  display: inline-block;
+  padding: 17px 24px;
+  background-color: $color-dark;
+  color: $color-white;
+  font-size: $fs-h5;
+  font-weight: $fw-medium;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}

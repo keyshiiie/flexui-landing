@@ -1,0 +1,49 @@
+---
+import SpiralLeft from '../../assets/images/hero-spiral.svg';
+import StarLeft from '../../assets/images/star-hero-left.svg';
+import StarRight from '../../assets/images/star-hero-right.svg';
+import heroPhoto from '../../assets/images/hero.jpg';
+import { Image } from 'astro:assets';
+---
+
+<section class="hero">
+  <div class="hero__container">
+    <!-- Левая колонка: спираль + фото + звезда -->
+    <div class="hero__visual">
+      <SpiralLeft class="hero__spiral" />
+      <div class="hero__photo-wrapper">
+        <Image
+          src={heroPhoto}
+          alt="FlexUI team at work"
+          width={400}
+          height={400}
+          class="hero__photo"
+          loading="eager"
+        />
+        <div class="hero__photo-overlay"></div>
+      </div>
+      <StarLeft class="hero__star hero__star--left" />
+    </div>
+
+    <!-- Правая колонка: заголовок + текст + кнопки -->
+    <div class="hero__content">
+      <h1 class="hero__title">
+        Full-Service
+        <div class="highlight"><span class="highlight-text">Webflow Agency</span></div>
+        For <div class="highlight"><span class="highlight-text">Modern</span></div>
+        Digital Solutions
+      </h1>
+
+      <p class="hero__description">
+        As a dedicated Webflow agency, we harness the full potential of this dynamic platform to build responsive, visually stunning websites that set trends in digital design.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#how-it-works" class="hero__link">How it Work</a>
+        <a href="#contact" class="hero__cta">Contact Us</a>
+      </div>
+    </div>
+
+    <StarRight class="hero__star hero__star--right" />
+  </div>
+</section>

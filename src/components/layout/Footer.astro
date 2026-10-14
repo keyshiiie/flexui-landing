@@ -1,0 +1,85 @@
+---
+const footerLinks = [
+  { label: 'Products', href: '/products' },
+  { label: 'Assets', href: '/assets' },
+  { label: 'Support', href: '/support' },
+  { label: 'About', href: '/about' },
+];
+
+const socials = [
+  {
+    label: 'YouTube',
+    href: 'https://youtube.com',
+    icon: 'youtube',
+  },
+  {
+    label: 'Telegram',
+    href: 'https://telegram.org',
+    icon: 'telegram',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com',
+    icon: 'linkedin',
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__container">
+    <!-- Логотип и подпись -->
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label="FlexUI — Home">
+        <span class="footer__logo-icon">✕</span>
+        <span class="footer__logo-text">FlexUI</span>
+      </a>
+      <p class="footer__tagline">Full-Service Webflow Agency</p>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <ul class="footer__nav-list">
+        {footerLinks.map((link) => (
+          <li>
+            <a href={link.href} class="footer__nav-link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Соцсети -->
+    <div class="footer__socials">
+      <p class="footer__socials-title">Social Links:</p>
+      <ul class="footer__socials-list">
+        {socials.map((social) => (
+          <li>
+            <a
+              href={social.href}
+              class="footer__social-link"
+              aria-label={social.label}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.icon}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Нижняя полоса -->
+  <div class="footer__bottom">
+    <div class="footer__bottom-container">
+      <p class="footer__copyright">
+        {currentYear} FlexUI. All Rights Reserved
+      </p>
+      <ul class="footer__legal">
+        <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+        <li><a href="/terms" class="footer__legal-link">Term of Use</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
