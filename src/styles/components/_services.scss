@@ -84,11 +84,10 @@
   padding: 16px;
   background-color: transparent;
   border: 1px solid $color-dark;
-  transition: background-color $transition-base, transform $transition-base;
+  transition: background-color $transition-base; 
 
   &:hover {
     background-color: rgba($color-dark, 0.03);
-    transform: translateY(-4px);
   }
 
   @include mobile-down {

@@ -16,6 +16,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
   color: $color-dark;
   background-color: $color-bg;
   text-rendering: optimizeSpeed;
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {

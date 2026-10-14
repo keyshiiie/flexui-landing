@@ -1,0 +1,229 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.reviews {
+  background-color: $color-dark;
+  padding: 120px 0;
+  overflow: hidden;
+
+
+  &__container {
+    @include container;
+  }
+
+  // ============================================
+  // HEADER
+  // ============================================
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: $gap-xl;
+    margin-bottom: $gap-lg;
+
+    @include tablet-down {
+      flex-direction: column;
+      gap: $gap-lg;
+    }
+  }
+
+  &__title {
+    @include heading($fs-h2, $fw-regular);
+    line-height: 1.4;
+    color: $color-white;
+
+    @include tablet-down {
+      font-size: 40px;
+    }
+
+    @include mobile-down {
+      font-size: 28px;
+    }
+  }
+
+  &__spiral {
+    width: 280px;
+    height: auto;
+    flex-shrink: 0;
+    animation: reviews-spin 20s linear infinite;
+
+    @include tablet-down {
+      width: 120px;
+      height: 120px;
+    }
+
+    @include mobile-down {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  // ============================================
+  // CONTROLS (стрелки)
+  // ============================================
+  &__controls {
+    display: flex;
+    margin-left: 14.5%;
+    gap: 8px;
+    margin-bottom: $gap-lg;
+  }
+
+  &__arrow {
+    @include flex-center;
+    width: 50px;
+    height: 50px;
+    background-color: $color-white;
+    color: $color-dark;
+    border: none;
+    cursor: pointer;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  // ============================================
+  // SLIDER
+  // ============================================
+  &__slider {
+    position: relative;
+    padding-bottom: 60px; // место для пагинации
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    display: flex;
+    gap: 1px;
+
+    .swiper-pagination-bullet {
+      width: 21px;
+      height: 12px;
+      background-color: rgba($color-white, 0.3);
+      border-radius: 0;
+      opacity: 1;
+      transition: background-color $transition-fast;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: $color-white;
+      width: 62px;
+    }
+  }
+}
+
+// ============================================
+// REVIEW CARD
+// ============================================
+.review-card {
+  position: relative;
+  padding: 40px;
+  min-height: 620px;
+  width: 100%;
+
+  @include mobile-down {
+    padding: 24px;
+    min-height: 280px;
+  }
+
+  // ============================================
+  // ФОН (декорация из SVG)
+  // ============================================
+  &__bg {
+    position: relative;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // ============================================
+  // КОНТЕНТ
+  // ============================================
+  &__content {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-md;
+  }
+
+  &__quote {
+    width: 70px;
+    height: auto;
+    margin-bottom: $gap-sm;
+
+    @include mobile-down {
+    }
+  }
+
+  &__text {
+    font-size: 26px;
+    font-weight: $fw-regular;
+    color: $color-white;
+    max-width: 90%;
+    flex-grow: 1;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: $gap-md;
+    margin-top: $gap-lg;
+    padding-top: $gap-md;
+  }
+
+  &__logo {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    border-right: 1px solid $color-white;
+  }
+
+  &__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__name {
+    font-size: 26px;
+    font-weight: $fw-black;
+    color: $color-white;
+  }
+
+  &__role {
+    font-size: $fs-h5;
+    color: rgba($color-white, 0.7);
+  }
+}
+
+// ============================================
+// ANIMATION
+// ============================================
+@keyframes reviews-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.reviews .highlight {
+    transform: rotate(2deg);
+}

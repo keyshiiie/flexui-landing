@@ -1,0 +1,106 @@
+---
+import { Image } from 'astro:assets';
+import reviewsSpiral from '../../assets/images/reviews-spiral.svg';
+import reviewsBckg from '../../assets/images/reviews-bckg.svg';
+import umbrella from '../../assets/icons/clients/client-1.svg';
+import rewiewsQuote from '../../assets/icons/reviews-quote.svg';
+
+
+const reviews = [
+  {
+    text: 'Our design expertise spans UX/UI best practices, mobile-responsive layouts, and conversion-optimized interfaces, ensuring your digital touchpoints captivate and convert',
+    name: 'Phill Butler',
+    role: 'Director, Umbrella Group',
+    logo: umbrella,
+  },
+  {
+    text: 'Working with FlexUI transformed our digital presence. Their attention to detail and deep understanding of Webflow helped us launch a site that truly reflects our brand.',
+    name: 'Anna Reeves',
+    role: 'Marketing Lead, Terra',
+    logo: umbrella,
+  },
+  {
+    text: 'The team delivered beyond our expectations. Fast, responsive, and beautifully designed — exactly what we needed for our product launch.',
+    name: 'Michael Stone',
+    role: 'CEO, RobotX',
+    logo: umbrella,
+  },
+];
+---
+
+<section class="reviews">
+  <div class="reviews__container">
+    <!-- Header -->
+    <div class="reviews__header">
+      <h2 class="reviews__title">
+        Insights from<br />
+        Our <span class="highlight highlight--inverse">Customers</span>
+      </h2>
+      <img
+        src={reviewsSpiral.src}
+        alt=""
+        class="reviews__spiral"
+        aria-hidden="true"
+        width="180"
+        height="180"
+      />
+    </div>
+
+    <!-- Controls: стрелки слева -->
+    <div class="reviews__controls">
+      <button class="reviews__arrow reviews__arrow--prev" aria-label="Previous review">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </button>
+      <button class="reviews__arrow reviews__arrow--next" aria-label="Next review">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Slider -->
+    <div class="reviews__slider swiper">
+      <div class="swiper-wrapper">
+        {reviews.map((review) => (
+          <div class="swiper-slide reviews__slide">
+            <article class="review-card">
+              <img
+                src={reviewsBckg.src}
+                alt=""
+                class="review-card__bg"
+                aria-hidden="true"
+              />
+
+              <div class="review-card__content">
+                <img
+                src={rewiewsQuote.src}
+                alt=""
+                class="review-card__quote"
+                aria-hidden="true"
+              />
+                <p class="review-card__text">{review.text}</p>
+
+                <div class="review-card__author">
+                  <img
+                    src={review.logo.src}
+                    alt=""
+                    class="review-card__logo"
+                    aria-hidden="true"
+                  />
+                  <div class="review-card__author-info">
+                    <span class="review-card__name">{review.name}</span>
+                    <span class="review-card__role">{review.role}</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+
+      <div class="swiper-pagination reviews__pagination"></div>
+    </div>
+  </div>
+</section>

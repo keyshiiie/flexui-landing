@@ -39,5 +39,14 @@ const {
       <slot />
     </main>
     <Footer />
+
+    <script>
+      import { initAnimations } from '../scripts/animations.js';
+      import { initReviewsSlider } from '../scripts/slider.js';
+
+      // Инициализация после того, как DOM готов
+      initReviewsSlider();
+      initAnimations();
+    </script>
   </body>
 </html>

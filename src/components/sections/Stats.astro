@@ -1,0 +1,43 @@
+---
+import StatCard from '../ui/StatCard.astro';
+import circle from '../../assets/images/solutions-circle.svg';
+
+const stats = [
+  { value: 56, label: 'Project' },
+  { value: 85, label: 'Clients' },
+  { value: 21, label: 'Awards' },
+  { value: 9, label: 'Awards' },
+];
+---
+
+<section class="stats">
+  <div class="stats__container">
+    <!-- Левая часть: спираль + контент -->
+    <div class="stats__visual">
+      <img
+        src={circle.src}
+        alt=""
+        class="stats__circle"
+        aria-hidden="true"
+        width="220"
+        height="220"
+      />
+    </div>
+
+    <div class="stats__content">
+      <h2 class="stats__title">
+        <span class="highlight">Captivate</span> Your Customers
+      </h2>
+      <p class="stats__description">
+        Innovative solutions that captivate customers, drive engagement and get real-world results.
+      </p>
+    </div>
+
+    <!-- Правая часть: сетка со статистикой -->
+    <div class="stats__grid">
+      {stats.map((stat) => (
+        <StatCard value={stat.value} label={stat.label} />
+      ))}
+    </div>
+  </div>
+</section>
