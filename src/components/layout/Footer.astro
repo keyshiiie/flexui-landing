@@ -1,4 +1,9 @@
 ---
+import Logo from '../ui/Logo.astro';
+import Youtube from '../../assets/icons/socials/youtube.svg';
+import Discord from '../../assets/icons/socials/discord.svg';
+import LinkedIn from '../../assets/icons/socials/in.svg';
+
 const footerLinks = [
   { label: 'Products', href: '/products' },
   { label: 'Assets', href: '/assets' },
@@ -7,21 +12,9 @@ const footerLinks = [
 ];
 
 const socials = [
-  {
-    label: 'YouTube',
-    href: 'https://youtube.com',
-    icon: 'youtube',
-  },
-  {
-    label: 'Telegram',
-    href: 'https://telegram.org',
-    icon: 'telegram',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://linkedin.com',
-    icon: 'linkedin',
-  },
+  { Component: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+  { Component: Discord, href: 'https://discord.com', label: 'Discord' },
+  { Component: LinkedIn, href: 'https://linkedin.com', label: 'LinkedIn' },
 ];
 
 const currentYear = new Date().getFullYear();
@@ -29,13 +22,13 @@ const currentYear = new Date().getFullYear();
 
 <footer class="footer">
   <div class="footer__container">
-    <!-- Логотип и подпись -->
+    <!-- Бренд -->
     <div class="footer__brand">
       <a href="/" class="footer__logo" aria-label="FlexUI — Home">
-        <span class="footer__logo-icon">✕</span>
+        <Logo class="footer__logo-icon" size={32} />
         <span class="footer__logo-text">FlexUI</span>
       </a>
-      <p class="footer__tagline">Full-Service Webflow Agency</p>
+      <span class="footer__tagline">Full-Service Webflow Agency</span>
     </div>
 
     <!-- Навигация -->
@@ -53,16 +46,16 @@ const currentYear = new Date().getFullYear();
     <div class="footer__socials">
       <p class="footer__socials-title">Social Links:</p>
       <ul class="footer__socials-list">
-        {socials.map((social) => (
+        {socials.map(({ Component, href, label }) => (
           <li>
             <a
-              href={social.href}
+              href={href}
               class="footer__social-link"
-              aria-label={social.label}
+              aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {social.icon}
+              <Component />
             </a>
           </li>
         ))}

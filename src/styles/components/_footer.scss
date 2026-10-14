@@ -3,67 +3,89 @@
 
 .footer {
   background-color: $color-bg;
-  border-top: 1px solid $color-dark-10;
+  border-top: 1px solid $color-dark-20;
 
+  // ============================================
+  // ВЕРХНЯЯ ЧАСТЬ
+  // ============================================
   &__container {
     @include container;
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: $gap-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gap-lg;
     padding-top: 64px;
     padding-bottom: 64px;
-    align-items: start;
+    text-align: center;
 
-    @include tablet-down {
-      grid-template-columns: 1fr;
-      gap: $gap-lg;
+    @include mobile-down {
       padding-top: 48px;
       padding-bottom: 48px;
-      text-align: center;
+      gap: $gap-md;
     }
   }
 
+  // ============================================
+  // БРЕНД
+  // ============================================
   &__brand {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
   }
 
   &__logo {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-weight: $fw-semibold;
-    font-size: 20px;
+    gap: 10px;
     color: $color-dark;
-
-    @include tablet-down {
-      justify-content: center;
-    }
   }
 
   &__logo-icon {
-    font-size: 24px;
+    width: 32px;
+    height: auto;
+    color: $color-dark;
+  }
+
+  &__logo-text {
+    font-size: 28px;
+    font-weight: $fw-semibold;
+    color: $color-dark;
+    letter-spacing: -0.02em;
   }
 
   &__tagline {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: $color-dark;
+    color: $color-white;
     font-size: $fs-small;
-    color: $color-dark-80;
+    font-weight: $fw-medium;
   }
 
+  // ============================================
+  // НАВИГАЦИЯ
+  // ============================================
   &__nav-list {
     display: flex;
-    gap: $gap-md;
+    align-items: center;
+    justify-content: center;
+    gap: $gap-lg;
     flex-wrap: wrap;
 
-    @include tablet-down {
-      justify-content: center;
+    @include mobile-down {
+      gap: $gap-md;
     }
   }
 
   &__nav-link {
-    font-size: $fs-small;
+    font-size: $fs-h5;
+    font-weight: $fw-regular;
     color: $color-dark;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
     transition: opacity $transition-fast;
 
     &:hover {
@@ -71,47 +93,53 @@
     }
   }
 
+  // ============================================
+  // СОЦСЕТИ
+  // ============================================
   &__socials {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-
-    @include tablet-down {
-      align-items: center;
-    }
+    align-items: center;
+    gap: $gap-sm;
   }
 
   &__socials-title {
-    font-size: $fs-small;
-    color: $color-dark-80;
+    font-size: $fs-h5;
+    color: $color-dark;
   }
 
   &__socials-list {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
-
-    @include tablet-down {
-      justify-content: center;
-    }
   }
 
   &__social-link {
     @include flex-center;
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     background-color: $color-dark;
     color: $color-white;
-    border-radius: $radius-sm;
-    font-size: $fs-tiny;
     transition: opacity $transition-fast;
 
     &:hover {
       opacity: 0.8;
     }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
   }
 
+  // ============================================
+  // НИЖНЯЯ ПОЛОСА
+  // ============================================
   &__bottom {
-    border-top: 1px solid $color-dark-10;
+    background-color: $color-dark;
+    color: $color-white;
   }
 
   &__bottom-container {
@@ -119,27 +147,28 @@
     @include flex-between;
     padding-top: 20px;
     padding-bottom: 20px;
+    gap: $gap-md;
 
-    @include tablet-down {
+    @include mobile-down {
       flex-direction: column;
-      gap: 12px;
       text-align: center;
     }
   }
 
   &__copyright {
-    font-size: $fs-tiny;
-    color: $color-dark-80;
+    font-size: $fs-small;
+    color: $color-white;
   }
 
   &__legal {
     display: flex;
+    align-items: center;
     gap: $gap-md;
   }
 
   &__legal-link {
-    font-size: $fs-tiny;
-    color: $color-dark-80;
+    font-size: $fs-small;
+    color: $color-white;
     transition: opacity $transition-fast;
 
     &:hover {
