@@ -1,0 +1,43 @@
+---
+import SolutionCard from '../ui/SolutionCard.astro';
+import circle from '../../assets/images/solutions-circle.svg';
+import photo1 from '../../assets/images/solutions/photo-1.svg';
+import photo2 from '../../assets/images/solutions/photo-2.svg';
+import photo3 from '../../assets/images/solutions/photo-3.svg';
+
+const solutions = [
+  { image: photo1, title: 'Web Design' },
+  { image: photo2, title: 'App Design' },
+  { image: photo3, title: 'Product Design' },
+];
+---
+
+<section class="solutions">
+  <div class="solutions__container">
+    <!-- Header -->
+    <div class="solutions__header">
+      <h2 class="solutions__title">
+        Digital Solutions For A<br />
+        <div class="highlight"><span class="highlight-text">Constantly</span></div> Evolving World
+      </h2>
+      <img
+        src={circle.src}
+        alt=""
+        class="solutions__circle"
+        aria-hidden="true"
+        width="160"
+        height="160"
+      />
+    </div>
+
+    <!-- Grid -->
+    <div class="solutions__grid">
+      {solutions.map((solution) => (
+        <SolutionCard
+          image={solution.image}
+          title={solution.title}
+        />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import orbit from '../../assets/images/solutions-orbit.svg';
+
+interface Props {
+  image: any;
+  title: string;
+}
+
+const { image, title } = Astro.props;
+---
+
+<article class="solution-card">
+  <div class="solution-card__visual">
+    <img
+      src={orbit.src}
+      alt=""
+      class="solution-card__orbit"
+      aria-hidden="true"
+      width="320"
+      height="320"
+    />
+    <div class="solution-card__photo">
+      <img src={image.src} alt={title} loading="lazy" />
+    </div>
+  </div>
+
+  <span class="solution-card__title">{title}</span>
+</article>

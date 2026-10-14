@@ -4,9 +4,7 @@
 .clients {
   background-color: $color-dark;
   padding: 120px 0;
-  // Наклон, как в макете (аналогично Marquee)
   transform: rotate(2deg);
-  // Расширяем по бокам, чтобы повёрнутый блок не оставлял пустот
   margin: 60px -20px;
   width: calc(100% + 40px);
 
@@ -52,12 +50,15 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    // Базовая непрозрачность для появления через GSAP
+    // (GSAP перезапишет её при анимации)
   }
 
   &__logo {
     height: auto;
     max-width: 220px;
     object-fit: contain;
+    opacity: 0.7;                       // ← добавили
     transition: opacity $transition-fast;
 
     &:hover {
@@ -66,6 +67,7 @@
 
     @include tablet-down {
       height: 28px;
+      max-width: 160px;
     }
 
     @include mobile-down {
