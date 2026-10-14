@@ -1,0 +1,29 @@
+---
+import Client1 from '../../assets/icons/clients/client-1.svg';
+import Client2 from '../../assets/icons/clients/client-2.svg';
+import Client3 from '../../assets/icons/clients/client-3.svg';
+import Client4 from '../../assets/icons/clients/client-4.svg';
+import Client5 from '../../assets/icons/clients/client-5.svg';
+import Client6 from '../../assets/icons/clients/client-6.svg';
+
+const clients = [
+  { Component: Client1, alt: 'Umbrella' },
+  { Component: Client2, alt: 'Terra' },
+  { Component: Client3, alt: 'RobotX' },
+  { Component: Client4, alt: 'Vertigo' },
+  { Component: Client5, alt: 'Hitech' },
+  { Component: Client6, alt: 'Automation' },
+];
+---
+
+<section class="clients">
+  <div class="clients__container">
+    <ul class="clients__list">
+      {clients.map(({ Component, alt }) => (
+        <li class="clients__item" aria-label={alt}>
+          <Component class="clients__logo" />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
