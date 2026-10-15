@@ -40,10 +40,10 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(16px, 1.5vw, 24px);
+    gap: clamp(24px, 1.5vw, 24px);
 
     @include desktop-down { grid-template-columns: repeat(2, 1fr); }
-    @include mobile-down  { grid-template-columns: 1fr; }
+    @include mobile-down  { grid-template-columns: 1fr;}
   }
 }
 

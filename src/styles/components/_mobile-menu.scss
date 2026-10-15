@@ -1,0 +1,143 @@
+/* ================= MOBILE MENU ================= */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  visibility: hidden;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(25, 25, 25, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(420px, 90vw);
+    height: 100%;
+    background-color: #DEE8E0;
+    border-left: 1px solid rgba(25, 25, 25, 0.2);
+    padding: clamp(80px, 12vw, 100px) clamp(20px, 5vw, 40px) clamp(24px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 4vw, 40px);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__item {
+    border-bottom: 1px solid rgba(25, 25, 25, 0.1);
+  }
+
+  &__link,
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #191919;
+    text-align: left;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__arrow {
+    display: inline-flex;
+    transition: transform 0.25s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 16px;
+  }
+
+  &__submenu-link {
+    display: block;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgba(25, 25, 25, 0.7);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #191919;
+    }
+  }
+
+  /* Открытое подменю */
+  &__item.is-open {
+    .mobile-menu__arrow {
+      transform: rotate(180deg);
+    }
+
+    .mobile-menu__submenu {
+      max-height: 300px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 24px;
+  }
+
+  &__cta, &__link {
+    text-align: center;
+  }
+
+  /* ===== Открытое состояние ===== */
+  &.is-open {
+    pointer-events: auto;
+    visibility: visible;
+
+    .mobile-menu__overlay {
+      opacity: 1;
+    }
+
+    .mobile-menu__panel {
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Блокировка скролла body */
+body.is-locked {
+  overflow: hidden;
+}
+
+/* Показываем бургер только на мобильных */
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.mobile-menu__actions .mobile-menu__link {
+    justify-content: space-around;
+}

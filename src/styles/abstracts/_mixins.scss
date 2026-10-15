@@ -127,3 +127,9 @@
 
   &:hover { opacity: 0.85; }
 }
+
+@media (max-width: 1640px) and (min-width: 1440px) {
+  body {
+    zoom: 0.75;
+  }
+}

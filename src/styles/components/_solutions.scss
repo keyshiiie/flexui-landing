@@ -12,11 +12,11 @@
     align-items: center;
     justify-content: space-around;
     gap: clamp(32px, 5vw, 64px);
+    margin-bottom: clamp(24px, 3vw, 80px);
 
     @include tablet-down {
       flex-direction: column;
       gap: $gap-lg;
-      margin-bottom: clamp(40px, 5vw, 64px);
     }
   }
 
@@ -42,12 +42,28 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(90px, 3vw, 32px);
-    margin-top: clamp(24px, 3vw, 70px);
+    gap: clamp(90px, 4vw, 64px);
+    margin-top: clamp(40px, 6vw, 160px);
 
     @include tablet-down {
+      grid-template-columns: repeat(2, 1fr);
+
+      // третья карточка — на всю ширину, но по центру
+      .solution-card:nth-child(3) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - #{clamp(16px, 2vw, 32px)});
+      }
+    }
+
+    @include mobile-down {
       grid-template-columns: 1fr;
-      margin: 0 auto;
+
+      .solution-card:nth-child(3) {
+        grid-column: auto;
+        justify-self: stretch;
+        width: 100%;
+      }
     }
   }
 }

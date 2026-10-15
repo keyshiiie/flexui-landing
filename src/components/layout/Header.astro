@@ -49,7 +49,7 @@ const arrowIcon = `
 `;
 ---
 
-<header class="header">
+<header class="header" data-header>
   <div class="header__container">
     <!-- Логотип -->
     <a href="/" class="header__logo" aria-label="FlexUI — Home">
@@ -57,7 +57,7 @@ const arrowIcon = `
       <span class="header__logo-text">FlexUI</span>
     </a>
 
-    <!-- Навигация -->
+    <!-- Навигация (десктоп) -->
     <nav class="header__nav" aria-label="Main navigation">
       <ul class="header__nav-list">
         {navItems.map((item) => (
@@ -85,22 +85,72 @@ const arrowIcon = `
       </ul>
     </nav>
 
-    <!-- Кнопки справа -->
+    <!-- Кнопки справа (десктоп) -->
     <div class="header__actions">
       <a href="/how-it-works" class="header__link">How it Work</a>
       <a href="/contact" class="header__cta">Contact Us</a>
     </div>
 
-    <!-- Бургер для мобильных -->
+    <!-- Бургер -->
     <button
       class="header__burger"
       type="button"
       aria-label="Open menu"
       aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-burger
     >
       <span></span>
       <span></span>
       <span></span>
     </button>
+  </div>
+
+  <!-- ================= МОБИЛЬНОЕ МЕНЮ ================= -->
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu aria-hidden="true">
+    <div class="mobile-menu__overlay" data-mobile-overlay></div>
+
+    <div class="mobile-menu__panel">
+      <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+        <ul class="mobile-menu__list">
+          {navItems.map((item) => (
+            <li class="mobile-menu__item">
+              {item.children ? (
+                <>
+                  <button
+                    class="mobile-menu__toggle"
+                    type="button"
+                    aria-expanded="false"
+                    data-accordion
+                  >
+                    <span>{item.label}</span>
+                    <span class="mobile-menu__arrow" set:html={arrowIcon}></span>
+                  </button>
+
+                  <ul class="mobile-menu__submenu">
+                    {item.children.map((child) => (
+                      <li>
+                        <a href={child.href} class="mobile-menu__submenu-link">
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <a href={item.href} class="mobile-menu__link">
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="mobile-menu__actions">
+        <a href="/how-it-works" class="mobile-menu__link">How it Work</a>
+        <a href="/contact" class="header__cta mobile-menu__cta">Contact Us</a>
+      </div>
+    </div>
   </div>
 </header>
