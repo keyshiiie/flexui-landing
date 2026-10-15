@@ -7,7 +7,7 @@
   z-index: $z-header;
   background-color: $color-bg;
   border-bottom: 1px solid $color-dark-20;
-  padding: 20px;
+  padding: clamp(12px, 1.4vw, 20px) 0;
   transition: border-color $transition-base, box-shadow $transition-base;
 
   &--scrolled {
@@ -18,40 +18,37 @@
   &__container {
     @include container;
     @include flex-between;
-    gap: $gap-lg;
+    gap: clamp(16px, 2vw, 32px);
   }
 
   // Логотип
   &__logo {
     display: flex;
     align-items: center;
-    gap: $gap-md;
+    gap: clamp(8px, 1.2vw, 24px);
     font-weight: $fw-medium;
-    font-size: $fs-h3;
+    font-size: clamp(20px, 2.2vw, 40px);
     color: $color-dark;
   }
 
   &__logo-icon {
-    width: 33px;
+    width: clamp(22px, 1.8vw, 33px);
     height: auto;
   }
 
-  // Навигация
+  // Навигация (структурное — оставляем медиа)
   &__nav {
-    @include desktop-down {
-      display: none;
-    }
+    @include desktop-down { display: none; }
   }
 
   &__nav-list {
     display: flex;
     align-items: center;
-    gap: $gap-lg;
+    gap: clamp(20px, 2vw, 32px);
   }
 
   &__nav-item {
     position: relative;
-
     &:hover .header__dropdown {
       opacity: 1;
       visibility: visible;
@@ -63,26 +60,20 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: $fs-h5;
+    font-size: $fs-h5-fluid;
     font-weight: $fw-medium;
     color: $color-dark;
     transition: opacity $transition-fast;
-
-    &:hover {
-      opacity: 0.6;
-    }
+    &:hover { opacity: 0.6; }
   }
 
   &__nav-arrow {
     font-size: 10px;
     transition: transform $transition-fast;
-
-    .header__nav-item:hover & {
-      transform: rotate(180deg);
-    }
+    .header__nav-item:hover & { transform: rotate(180deg); }
   }
 
-  // Выпадающее меню
+  // Дропдаун
   &__dropdown {
     position: absolute;
     top: 100%;
@@ -106,41 +97,29 @@
     font-size: $fs-small;
     color: $color-dark;
     transition: background-color $transition-fast;
-
-    &:hover {
-      background-color: $color-bg;
-    }
+    &:hover { background-color: $color-bg; }
   }
 
-  // Кнопки справа
+  // Кнопки справа (структурное скрытие)
   &__actions {
     display: flex;
     align-items: center;
-    gap: $gap-md;
+    gap: clamp(12px, 1.4vw, 24px);
 
-    @include tablet-down {
-      display: none;
-    }
+    @include tablet-down { display: none; }
   }
 
-  &__link {
-    @include cta-link;
-  }
+  &__link { @include cta-link; }
+  &__cta  { @include cta-button; }
 
-  &__cta {
-    @include cta-button;
-  }
-
-  // Бургер
+  // Бургер (структурное)
   &__burger {
     display: none;
     flex-direction: column;
     gap: 5px;
     width: 24px;
 
-    @include tablet-down {
-      display: flex;
-    }
+    @include tablet-down { display: flex; }
 
     span {
       display: block;

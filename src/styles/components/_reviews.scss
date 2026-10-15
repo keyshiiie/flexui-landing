@@ -3,83 +3,74 @@
 
 .reviews {
   background-color: $color-dark;
-  padding: 120px 0;
+  padding: clamp(60px, 7vw, 120px) 0;
   overflow: hidden;
 
-  &__container {
-    @include container;
-  }
+  &__container { @include container; }
 
-  // ============================================
-  // HEADER
-  // ============================================
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: $gap-xl;
-    margin-bottom: $gap-lg;
+    gap: clamp(32px, 5vw, 64px);
+    margin-bottom: clamp(24px, 2.5vw, 32px);
 
     @include tablet-down {
       flex-direction: column;
       gap: $gap-lg;
     }
+
+    @include mobile-down {
+      flex-direction: column;
+      align-items: center;
+      gap: $gap-md; // или свой отступ
+    }
   }
 
   &__title {
-    @include heading($fs-h2, $fw-regular);
+    font-size: $fs-h2-fluid;
+    font-weight: $fw-regular;
     line-height: 1.4;
+    letter-spacing: -0.02em;
     color: $color-white;
 
-    @include tablet-down {
-      font-size: 40px;
-    }
-
     @include mobile-down {
-      font-size: 28px;
+      order: 2; // текст — под спиралью
+      text-align: center; // если нужно по центру
     }
   }
 
   &__spiral {
-    width: 280px;
+    width: clamp(140px, 12vw, 280px);
     height: auto;
     flex-shrink: 0;
     animation: reviews-spin 20s linear infinite;
 
-    @include tablet-down {
-      width: 120px;
-      height: 120px;
-    }
-
     @include mobile-down {
-      width: 80px;
-      height: 80px;
+      order: 1; // спираль — над текстом
     }
   }
 
-  // ============================================
-  // CONTROLS (стрелки)
-  // ============================================
   &__controls {
     display: flex;
     margin-left: 14.5%;
     gap: 8px;
-    margin-bottom: $gap-lg;
+    margin-bottom: clamp(24px, 2.5vw, 32px);
+
+    @include mobile-down { margin-left: 0; }
   }
 
   &__arrow {
     @include flex-center;
-    width: 50px;
-    height: 50px;
+    width: clamp(40px, 3.5vw, 50px);
+    height: clamp(40px, 3.5vw, 50px);
     background-color: $color-white;
     color: $color-dark;
     border: none;
     cursor: pointer;
     transition: opacity $transition-fast;
 
-    &:hover {
-      opacity: 0.8;
-    }
+    &:hover { opacity: 0.8; }
 
     &.swiper-button-disabled {
       opacity: 0.3;
@@ -87,26 +78,39 @@
     }
   }
 
-  // ============================================
-  // SLIDER
-  // ============================================
+  &__slide { height: auto; }
+
   &__slider {
     position: relative;
-    padding-bottom: 60px; // место для пагинации
+    padding-bottom: 60px;
+
+    @include mobile-down {
+      padding-bottom: 0;
+    }
   }
 
-  &__slide {
-    height: auto;
-  }
-
+  // Пагинация лежит ВНУТРИ .reviews__slider (внутри .swiper)
   &__pagination {
+    // Десктоп: абсолютное позиционирование по центру внизу слайдера
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    justify-content: center;
     display: flex;
+    justify-content: center;
     gap: 1px;
+    z-index: 10;
+
+    @include mobile-down {
+      // Мобилка: в потоке, с отступом 20px под слайдом
+      // !important — чтобы перебить инлайн-стили Swiper
+      position: static !important;
+      transform: none !important;
+      left: auto !important;
+      bottom: auto !important;
+      margin-top: 20px;
+      justify-content: center;
+    }
 
     .swiper-pagination-bullet {
       width: 21px;
@@ -124,23 +128,17 @@
   }
 }
 
-// ============================================
-// REVIEW CARD
-// ============================================
 .review-card {
   position: relative;
-  padding: 40px;
-  min-height: 620px;
+  padding: clamp(20px, 2.5vw, 40px);
+  min-height: clamp(280px, 40vw, 620px);
   width: 100%;
 
   @include mobile-down {
-    padding: 24px;
-    min-height: 280px;
+    padding: 0;
+    min-height: auto;
   }
 
-  // ============================================
-  // ФОН (декорация из SVG)
-  // ============================================
   &__bg {
     position: relative;
     inset: 0;
@@ -149,11 +147,12 @@
     object-fit: fill;
     pointer-events: none;
     z-index: 1;
+
+    @include mobile-down {
+      display: none;
+    }
   }
 
-  // ============================================
-  // КОНТЕНТ
-  // ============================================
   &__content {
     position: absolute;
     top: 15%;
@@ -161,20 +160,24 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: $gap-md;
-  }
-
-  &__quote {
-    width: 70px;
-    height: auto;
-    margin-bottom: $gap-sm;
+    gap: clamp(12px, 1.5vw, 24px);
 
     @include mobile-down {
+      position: static;
+      top: auto;
+      left: auto;
+      padding: 0;
     }
   }
 
+  &__quote {
+    width: clamp(40px, 4vw, 70px);
+    height: auto;
+    margin-bottom: $gap-sm;
+  }
+
   &__text {
-    font-size: 26px;
+    font-size: clamp(16px, 1.6vw, 26px);
     font-weight: $fw-regular;
     color: $color-white;
     max-width: 90%;
@@ -184,13 +187,13 @@
   &__author {
     display: flex;
     align-items: center;
-    gap: $gap-md;
-    margin-top: $gap-lg;
-    padding-top: $gap-md;
+    gap: clamp(12px, 1.5vw, 24px);
+    margin-top: clamp(20px, 2vw, 32px);
+    padding-top: clamp(12px, 1.5vw, 24px);
   }
 
   &__logo {
-    width: 200px;
+    width: clamp(100px, 12vw, 200px);
     height: auto;
     object-fit: contain;
     border-right: 1px solid $color-white;
@@ -203,25 +206,20 @@
   }
 
   &__name {
-    font-size: 26px;
+    font-size: clamp(16px, 1.6vw, 26px);
     font-weight: $fw-black;
     color: $color-white;
   }
 
   &__role {
-    font-size: $fs-h5;
+    font-size: $fs-h5-fluid;
     color: rgba($color-white, 0.7);
   }
 }
 
-// ============================================
-// ANIMATION
-// ============================================
 @keyframes reviews-spin {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.reviews .highlight {
-  transform: rotate(2deg);
-}
+.reviews .highlight { transform: rotate(2deg); }

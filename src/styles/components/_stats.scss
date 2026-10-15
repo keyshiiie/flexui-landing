@@ -7,87 +7,61 @@
   &__container {
     @include container;
     display: grid;
-    grid-template-columns: 220px auto auto;
+    grid-template-columns: auto auto auto;
     justify-content: center;
     align-items: center;
-    gap: $gap-xl;
+    gap: clamp(32px, 5vw, 64px);
 
+    // Структурное: 3 колонки → 2 → 1
     @include desktop-down {
-      grid-template-columns: 180px 1fr;
-      gap: $gap-lg;
+      grid-template-columns: clamp(120px, 14vw, 180px) 1fr;
+      gap: clamp(24px, 3vw, 32px);
     }
 
     @include tablet-down {
       grid-template-columns: 1fr;
-      gap: $gap-lg;
+      gap: clamp(24px, 3vw, 32px);
       text-align: left;
     }
   }
 
-  // ============================================
-  // VISUAL (спираль)
-  // ============================================
   &__visual {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    @include tablet-down {
-      justify-content: flex-start;
-    }
+    @include tablet-down { justify-content: flex-start; }
   }
 
   &__circle {
-    width: 220px;
-    height: 220px;
+    width: clamp(140px, 14vw, 220px);
+    height: clamp(140px, 14vw, 220px);
     animation: stats-spin 25s linear infinite;
-
-    @include tablet-down {
-      width: 140px;
-      height: 140px;
-    }
-
-    @include mobile-down {
-      width: 100px;
-      height: 100px;
-    }
   }
 
-  // ============================================
-  // CONTENT (заголовок + описание)
-  // ============================================
   &__content {
     display: flex;
     flex-direction: column;
-    gap: $gap-md;
+    gap: clamp(12px, 1.5vw, 24px);
 
-    @include tablet-down {
-      gap: $gap-sm;
-    }
+    @include tablet-down { gap: $gap-sm; }
   }
 
   &__title {
-    @include heading($fs-h2, $fw-regular);
+    font-size: $fs-h2-fluid;
+    font-weight: $fw-regular;
     line-height: 1.2;
-
-    @include tablet-down {
-      font-size: 36px;
-    }
-
-    @include mobile-down {
-      font-size: 28px;
-    }
+    letter-spacing: -0.02em;
   }
 
   &__description {
-    @include body-text($fs-h4);
+    font-size: $fs-h4-fluid;
+    font-weight: $fw-regular;
+    line-height: $lh-body;
     color: $color-dark;
     max-width: 600px;
   }
 
-  // ============================================
-  // GRID (статистика)
-  // ============================================
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -100,37 +74,23 @@
       max-width: 400px;
     }
 
-    @include tablet-down {
-      justify-self: start;
-    }
+    @include tablet-down { justify-self: start; }
   }
 }
 
-// ============================================
-// STAT CARD
-// ============================================
 .stat-card {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 20px 24px;
+  padding: clamp(14px, 1.4vw, 20px) clamp(16px, 1.6vw, 24px);
   background-color: $color-dark;
   color: $color-white;
 
-  @include mobile-down {
-    padding: 16px;
-    min-width: 120px;
-  }
-
   &__value {
-    font-size: 40px;
+    font-size: clamp(26px, 2.6vw, 40px);
     font-weight: $fw-semibold;
     line-height: 1;
     letter-spacing: -0.02em;
-
-    @include mobile-down {
-      font-size: 32px;
-    }
   }
 
   &__label {
@@ -139,14 +99,9 @@
   }
 }
 
-// ============================================
-// ANIMATION
-// ============================================
 @keyframes stats-spin {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.stats .highlight {
-  transform: rotate(2deg);
-}
+.stats .highlight { transform: rotate(2deg); }

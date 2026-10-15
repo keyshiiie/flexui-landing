@@ -3,46 +3,27 @@
 
 .clients {
   background-color: $color-dark;
-  padding: 120px 0;
+  padding: clamp(40px, 6vw, 120px) 0;
   transform: rotate(2deg);
-  margin: 60px -20px;
+  margin: clamp(32px, 4vw, 60px) -20px;
   width: calc(100% + 40px);
 
-  @include tablet-down {
-    padding: 40px 0;
-    margin: 40px -10px;
-    width: calc(100% + 20px);
-  }
-
   @include mobile-down {
-    padding: 32px 0;
     margin: 32px -8px;
     width: calc(100% + 16px);
   }
 
-  &__container {
-    @include container;
-  }
+  &__container { @include container; }
 
   &__list {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: clamp(16px, 2vw, 30px);
     flex-wrap: wrap;
 
-    @include desktop-down {
-      gap: $gap-lg;
-    }
-
-    @include tablet-down {
-      justify-content: center;
-      gap: $gap-lg;
-    }
-
-    @include mobile-down {
-      gap: $gap-md;
-    }
+    @include tablet-down { justify-content: center; gap: $gap-lg; }
+    @include mobile-down  { gap: $gap-md; }
   }
 
   &__item {
@@ -50,29 +31,15 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    // Базовая непрозрачность для появления через GSAP
-    // (GSAP перезапишет её при анимации)
   }
 
   &__logo {
     height: auto;
-    max-width: 220px;
+    max-width: clamp(100px, 12vw, 220px);
     object-fit: contain;
     opacity: 0.7;
     transition: opacity $transition-fast;
 
-    &:hover {
-      opacity: 1;
-    }
-
-    @include tablet-down {
-      height: 28px;
-      max-width: 160px;
-    }
-
-    @include mobile-down {
-      height: 24px;
-      max-width: 120px;
-    }
+    &:hover { opacity: 1; }
   }
 }

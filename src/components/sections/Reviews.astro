@@ -66,29 +66,12 @@ const reviews = [
         {reviews.map((review) => (
           <div class="swiper-slide reviews__slide">
             <article class="review-card">
-              <img
-                src={reviewsBckg.src}
-                alt=""
-                class="review-card__bg"
-                aria-hidden="true"
-              />
-
+              <img src={reviewsBckg.src} alt="" class="review-card__bg" aria-hidden="true" />
               <div class="review-card__content">
-                <img
-                src={rewiewsQuote.src}
-                alt=""
-                class="review-card__quote"
-                aria-hidden="true"
-              />
+                <img src={rewiewsQuote.src} alt="" class="review-card__quote" aria-hidden="true" />
                 <p class="review-card__text">{review.text}</p>
-
                 <div class="review-card__author">
-                  <img
-                    src={review.logo.src}
-                    alt=""
-                    class="review-card__logo"
-                    aria-hidden="true"
-                  />
+                  <img src={review.logo.src} alt="" class="review-card__logo" aria-hidden="true" />
                   <div class="review-card__author-info">
                     <span class="review-card__name">{review.name}</span>
                     <span class="review-card__role">{review.role}</span>
@@ -100,7 +83,8 @@ const reviews = [
         ))}
       </div>
 
-      <div class="swiper-pagination reviews__pagination"></div>
+      <!-- Пагинация ВНУТРИ .swiper, после .swiper-wrapper -->
+      <div class="reviews__pagination swiper-pagination"></div>
     </div>
   </div>
 </section>

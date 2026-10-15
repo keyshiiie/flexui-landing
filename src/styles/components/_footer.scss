@@ -5,29 +5,17 @@
   background-color: $color-bg;
   border-top: 1px solid $color-dark-20;
 
-  // ============================================
-  // ВЕРХНЯЯ ЧАСТЬ
-  // ============================================
   &__container {
     @include container;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $gap-lg;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    gap: clamp(20px, 2.5vw, 32px);
+    padding-top: clamp(40px, 4vw, 64px);
+    padding-bottom: clamp(40px, 4vw, 64px);
     text-align: center;
-
-    @include mobile-down {
-      padding-top: 48px;
-      padding-bottom: 48px;
-      gap: $gap-md;
-    }
   }
 
-  // ============================================
-  // БРЕНД
-  // ============================================
   &__brand {
     display: flex;
     flex-direction: column;
@@ -43,13 +31,13 @@
   }
 
   &__logo-icon {
-    width: 32px;
+    width: clamp(24px, 2vw, 32px);
     height: auto;
     color: $color-dark;
   }
 
   &__logo-text {
-    font-size: 28px;
+    font-size: clamp(20px, 2vw, 28px);
     font-weight: $fw-semibold;
     color: $color-dark;
     letter-spacing: -0.02em;
@@ -64,23 +52,16 @@
     font-weight: $fw-medium;
   }
 
-  // ============================================
-  // НАВИГАЦИЯ
-  // ============================================
   &__nav-list {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $gap-lg;
+    gap: clamp(20px, 2vw, 32px);
     flex-wrap: wrap;
-
-    @include mobile-down {
-      gap: $gap-md;
-    }
   }
 
   &__nav-link {
-    font-size: $fs-h5;
+    font-size: $fs-h5-fluid;
     font-weight: $fw-regular;
     color: $color-dark;
     text-decoration: underline;
@@ -88,14 +69,9 @@
     text-decoration-thickness: 1px;
     transition: opacity $transition-fast;
 
-    &:hover {
-      opacity: 0.6;
-    }
+    &:hover { opacity: 0.6; }
   }
 
-  // ============================================
-  // СОЦСЕТИ
-  // ============================================
   &__socials {
     display: flex;
     flex-direction: column;
@@ -104,7 +80,7 @@
   }
 
   &__socials-title {
-    font-size: $fs-h5;
+    font-size: $fs-h5-fluid;
     color: $color-dark;
   }
 
@@ -117,26 +93,21 @@
 
   &__social-link {
     @include flex-center;
-    width: 48px;
-    height: 48px;
+    width: clamp(40px, 3.5vw, 48px);
+    height: clamp(40px, 3.5vw, 48px);
     background-color: $color-dark;
     color: $color-white;
     transition: opacity $transition-fast;
 
-    &:hover {
-      opacity: 0.8;
-    }
+    &:hover { opacity: 0.8; }
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: clamp(16px, 1.4vw, 20px);
+      height: clamp(16px, 1.4vw, 20px);
       fill: currentColor;
     }
   }
 
-  // ============================================
-  // НИЖНЯЯ ПОЛОСА
-  // ============================================
   &__bottom {
     background-color: $color-dark;
     color: $color-white;
@@ -147,7 +118,7 @@
     @include flex-between;
     padding-top: 20px;
     padding-bottom: 20px;
-    gap: $gap-md;
+    gap: clamp(12px, 1.5vw, 24px);
 
     @include mobile-down {
       flex-direction: column;
@@ -171,8 +142,6 @@
     color: $color-white;
     transition: opacity $transition-fast;
 
-    &:hover {
-      opacity: 0.6;
-    }
+    &:hover { opacity: 0.6; }
   }
 }

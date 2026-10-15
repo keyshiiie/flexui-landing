@@ -30,25 +30,16 @@
   width: 100%;
   max-width: $container-max;
   margin: 0 auto;
-  padding: 0 $container-padding;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
 }
 
 // ============================================
 // ВЕРТИКАЛЬНЫЕ ОТСТУПЫ СЕКЦИЙ
 // ============================================
 @mixin section-padding {
-  padding-top: $section-py-desktop;
-  padding-bottom: $section-py-desktop;
-
-  @include tablet-down {
-    padding-top: $section-py-tablet;
-    padding-bottom: $section-py-tablet;
-  }
-
-  @include mobile-down {
-    padding-top: $section-py-mobile;
-    padding-bottom: $section-py-mobile;
-  }
+  padding-top: $section-py-fluid;
+  padding-bottom: $section-py-fluid;
 }
 
 // ============================================
@@ -83,6 +74,13 @@
 }
 
 // ============================================
+// FLUID-ТЕКСТ (ручной clamp)
+// ============================================
+@mixin fluid-text($min, $preferred, $max) {
+  font-size: clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+// ============================================
 // ВИЗУАЛЬНЫЕ ЭФФЕКТЫ
 // ============================================
 @mixin hover-lift {
@@ -107,29 +105,25 @@
 }
 
 // ============================================
-// CTA кнопки
+// CTA
 // ============================================
 @mixin cta-link {
-  font-size: $fs-h5;
+  font-size: $fs-h5-fluid;
   font-weight: $fw-medium;
   color: $color-dark;
   transition: opacity $transition-fast;
 
-  &:hover {
-    opacity: 0.6;
-  }
+  &:hover { opacity: 0.6; }
 }
 
 @mixin cta-button {
   display: inline-block;
-  padding: 17px 24px;
+  padding: clamp(12px, 1vw, 17px) clamp(18px, 1.5vw, 24px);
   background-color: $color-dark;
   color: $color-white;
-  font-size: $fs-h5;
+  font-size: $fs-h5-fluid;
   font-weight: $fw-medium;
   transition: opacity $transition-fast;
 
-  &:hover {
-    opacity: 0.85;
-  }
+  &:hover { opacity: 0.85; }
 }

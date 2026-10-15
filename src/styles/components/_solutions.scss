@@ -3,90 +3,62 @@
 
 .solutions {
   @include section-padding;
-  overflow: hidden; // скрываем орбиты, выходящие за пределы секции
+  overflow: hidden;
 
-  &__container {
-    @include container;
-  }
+  &__container { @include container; }
 
-  // ============================================
-  // HEADER
-  // ============================================
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: $gap-xl;
+    gap: clamp(32px, 5vw, 64px);
 
     @include tablet-down {
       flex-direction: column;
       gap: $gap-lg;
-      margin-bottom: $gap-xl;
+      margin-bottom: clamp(40px, 5vw, 64px);
     }
   }
 
   &__title {
-    @include heading($fs-h2, $fw-regular);
+    font-size: $fs-h2-fluid;
+    font-weight: $fw-regular;
     line-height: 1.2;
+    letter-spacing: -0.02em;
     max-width: 720px;
-
-    @include tablet-down {
-      font-size: 40px;
-    }
-
-    @include mobile-down {
-      font-size: 28px;
-    }
   }
 
   &__circle {
-    width: 270px;
+    width: clamp(140px, 14vw, 270px);   // ← минимум поднят (не уменьшать на 320)
     height: auto;
     flex-shrink: 0;
     animation: spin 20s linear infinite;
 
     @include tablet-down {
-      width: 100px;
-      height: 100px;
-    }
-
-    @include mobile-down {
-      width: 72px;
-      height: 72px;
+      order: -1;                        // ← круг НАД заголовком
     }
   }
 
-  // ============================================
-  // GRID
-  // ============================================
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: $gap-lg;
-    margin-top: 40px;
+    gap: clamp(24px, 3vw, 32px);
+    margin-top: clamp(24px, 3vw, 40px);
 
     @include tablet-down {
       grid-template-columns: 1fr;
-      gap: $gap-xl;
-      max-width: 480px;
       margin: 0 auto;
     }
   }
 }
 
-// ============================================
-// SOLUTION CARD
-// ============================================
 .solution-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $gap-md;
+  gap: clamp(16px, 1.5vw, 24px);
   position: relative;
 
-  // ============================================
-  // VISUAL (орбита + фото)
-  // ============================================
   &__visual {
     position: relative;
     width: 100%;
@@ -98,18 +70,24 @@
 
   &__orbit {
     position: absolute;
-    top: 12%;
-    left: 12%;
-    width: 430px;
+    top: 8%;                                    // ← сдвинуто вверх
+    left: 8%;                                   // ← сдвинуто влево
+    width: clamp(240px, 24vw, 430px);           // ← минимум 240
     height: auto;
     transform: translate(-50%, -50%);
     pointer-events: none;
     animation: spin 30s linear infinite;
+
+    @media (max-width: 479px) {
+      top: 8%;                                  // ещё выше на мобилке
+      left: 8%;                                 // ещё левее
+      width: 240px;
+    }
   }
 
   &__photo {
     position: relative;
-    width: 240px;
+    width: clamp(140px, 14vw, 240px);
     height: auto;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
@@ -124,42 +102,30 @@
     }
   }
 
-  // ============================================
-  // TITLE
-  // ============================================
   &__title {
     position: absolute;
-    bottom: 15%;
+    bottom: calc(15% - 15px);                    // ← сдвинуто вниз на 15px
     display: inline-block;
-    padding: 5px 20px;
+    padding: 5px clamp(12px, 1.4vw, 20px);
     background-color: $color-dark;
     color: $color-white;
-    font-size: $fs-h3;
+    font-size: $fs-h3-fluid;
     font-weight: $fw-regular;
     white-space: nowrap;
-
-    @include mobile-down {
-      font-size: $fs-tiny;
-      padding: 8px 16px;
-    }
   }
 
-  // Первая и третья карточки — наклон -2deg
   &:nth-child(1),
   &:nth-child(3) {
-    .solution-card__title {
-      transform: rotate(-2deg);
-    }
+    .solution-card__title { transform: rotate(-2deg); }
   }
-
-  // Вторая карточка — наклон +2deg
   &:nth-child(2) {
-    .solution-card__title {
-      transform: rotate(2deg);
-    }
+    .solution-card__title { transform: rotate(2deg); }
   }
 }
 
-.solutions .highlight {
-  transform: rotate(2deg);
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
+
+.solutions .highlight { transform: rotate(2deg); }
