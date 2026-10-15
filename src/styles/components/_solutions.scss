@@ -149,17 +149,17 @@
   &:nth-child(3) {
     .solution-card__title {
       transform: rotate(-2deg);
-      }
     }
+  }
 
-    // Вторая карточка — наклон +2deg
+  // Вторая карточка — наклон +2deg
   &:nth-child(2) {
     .solution-card__title {
-        transform: rotate(2deg);
-      }
+      transform: rotate(2deg);
     }
+  }
 }
 
 .solutions .highlight {
-    transform: rotate(2deg);
+  transform: rotate(2deg);
 }

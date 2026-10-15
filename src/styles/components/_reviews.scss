@@ -6,7 +6,6 @@
   padding: 120px 0;
   overflow: hidden;
 
-
   &__container {
     @include container;
   }
@@ -223,7 +222,6 @@
   to { transform: rotate(360deg); }
 }
 
-
 .reviews .highlight {
-    transform: rotate(2deg);
+  transform: rotate(2deg);
 }
