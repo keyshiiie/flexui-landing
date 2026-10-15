@@ -43,7 +43,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(90px, 4vw, 64px);
-    margin-top: clamp(40px, 6vw, 160px);
+    margin-top: clamp(60px, 6vw, 160px);
 
     @include tablet-down {
       grid-template-columns: repeat(2, 1fr);
