@@ -11,15 +11,10 @@ const { image, title } = Astro.props;
 
 <article class="solution-card">
   <div class="solution-card__visual">
-    <img
-      src={orbit.src}
-      alt=""
-      class="solution-card__orbit"
-      aria-hidden="true"
-      width="320"
-      height="320"
-    />
-    <div class="solution-card__photo">
+    <div
+      class="solution-card__photo"
+      style={`--orbit: url(${orbit.src})`}
+    >
       <img src={image.src} alt={title} loading="lazy" />
     </div>
   </div>

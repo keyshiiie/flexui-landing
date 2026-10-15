@@ -4,7 +4,7 @@
 .reviews {
   background-color: $color-dark;
   padding: clamp(60px, 7vw, 120px) 0;
-  overflow: hidden;
+  overflow: visible;
 
   &__container { @include container; }
 
@@ -23,7 +23,7 @@
     @include mobile-down {
       flex-direction: column;
       align-items: center;
-      gap: $gap-md; // или свой отступ
+      gap: $gap-md;
     }
   }
 
@@ -35,8 +35,8 @@
     color: $color-white;
 
     @include mobile-down {
-      order: 2; // текст — под спиралью
-      text-align: center; // если нужно по центру
+      order: 2;
+      text-align: center;
     }
   }
 
@@ -47,7 +47,7 @@
     animation: reviews-spin 20s linear infinite;
 
     @include mobile-down {
-      order: 1; // спираль — над текстом
+      order: 1;
     }
   }
 
@@ -78,39 +78,29 @@
     }
   }
 
-  &__slide { height: auto; }
-
-  &__slider {
-    position: relative;
-    padding-bottom: 60px;
+  &__slide {
+    height: auto;
 
     @include mobile-down {
-      padding-bottom: 0;
+      padding-bottom: 20px;
     }
   }
 
-  // Пагинация лежит ВНУТРИ .reviews__slider (внутри .swiper)
+  &__slider {
+    position: relative;
+    padding-bottom: 0;
+  }
+
   &__pagination {
-    // Десктоп: абсолютное позиционирование по центру внизу слайдера
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     gap: 1px;
-    z-index: 10;
+    margin-top: 20px;
 
-    @include mobile-down {
-      // Мобилка: в потоке, с отступом 20px под слайдом
-      // !important — чтобы перебить инлайн-стили Swiper
-      position: static !important;
-      transform: none !important;
-      left: auto !important;
-      bottom: auto !important;
-      margin-top: 20px;
-      justify-content: center;
-    }
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    bottom: auto !important;
 
     .swiper-pagination-bullet {
       width: 21px;
@@ -130,44 +120,39 @@
 
 .review-card {
   position: relative;
-  padding: clamp(20px, 2.5vw, 40px);
-  min-height: clamp(280px, 40vw, 620px);
   width: 100%;
 
-  @include mobile-down {
-    padding: 0;
-    min-height: auto;
-  }
+  // Разный padding по сторонам: подгоняем контент ВНУТРЬ наклонной svg-рамки.
+  // top / right / bottom / left — значения подобраны под наклон линий svg.
+  padding:
+    clamp(40px, 5vw, 90px)          // top
+    clamp(10px, 4vw, 10px)          // right
+    clamp(20px, 11vw, 230px)        // bottom — больше, чтобы автор не наезжал на нижнюю линию
+    clamp(10px, 6vw, 150px);        // left — больше из-за "ступеньки" svg слева
 
-  &__bg {
-    position: relative;
+  // Фон-svg растягивается ровно по размерам карточки
+  &__bg-svg {
+    position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    display: block;
     pointer-events: none;
-    z-index: 1;
-
-    @include mobile-down {
-      display: none;
-    }
+    z-index: 0;
   }
 
+  @include mobile-down {
+    padding: 40px 24px 90px 40px;
+  }
+
+  // Контент в потоке — задаёт высоту карточки
   &__content {
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    z-index: 2;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: clamp(12px, 1.5vw, 24px);
-
-    @include mobile-down {
-      position: static;
-      top: auto;
-      left: auto;
-      padding: 0;
-    }
+    padding-bottom: clamp(90px, 1.5vw, 10px);
   }
 
   &__quote {
@@ -180,8 +165,6 @@
     font-size: clamp(16px, 1.6vw, 26px);
     font-weight: $fw-regular;
     color: $color-white;
-    max-width: 90%;
-    flex-grow: 1;
   }
 
   &__author {

@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import reviewsSpiral from '../../assets/images/reviews-spiral.svg';
-import reviewsBckg from '../../assets/images/reviews-bckg.svg';
 import umbrella from '../../assets/icons/clients/client-1.svg';
 import rewiewsQuote from '../../assets/icons/reviews-quote.svg';
-
+import ReviewCardBg from '../ui/ReviewCardBg.astro';
 
 const reviews = [
   {
@@ -46,7 +45,7 @@ const reviews = [
       />
     </div>
 
-    <!-- Controls: стрелки слева -->
+    <!-- Controls -->
     <div class="reviews__controls">
       <button class="reviews__arrow reviews__arrow--prev" aria-label="Previous review">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -60,13 +59,13 @@ const reviews = [
       </button>
     </div>
 
-    <!-- Slider -->
     <div class="reviews__slider swiper">
       <div class="swiper-wrapper">
         {reviews.map((review) => (
           <div class="swiper-slide reviews__slide">
             <article class="review-card">
-              <img src={reviewsBckg.src} alt="" class="review-card__bg" aria-hidden="true" />
+              <ReviewCardBg class="review-card__bg-svg" />
+
               <div class="review-card__content">
                 <img src={rewiewsQuote.src} alt="" class="review-card__quote" aria-hidden="true" />
                 <p class="review-card__text">{review.text}</p>
@@ -83,7 +82,6 @@ const reviews = [
         ))}
       </div>
 
-      <!-- Пагинация ВНУТРИ .swiper, после .swiper-wrapper -->
       <div class="reviews__pagination swiper-pagination"></div>
     </div>
   </div>

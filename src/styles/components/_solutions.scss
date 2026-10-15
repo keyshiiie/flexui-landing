@@ -29,21 +29,21 @@
   }
 
   &__circle {
-    width: clamp(140px, 14vw, 270px);   // ← минимум поднят (не уменьшать на 320)
+    width: clamp(140px, 14vw, 270px);
     height: auto;
     flex-shrink: 0;
     animation: spin 20s linear infinite;
 
     @include tablet-down {
-      order: -1;                        // ← круг НАД заголовком
+      order: -1;
     }
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(24px, 3vw, 32px);
-    margin-top: clamp(24px, 3vw, 40px);
+    gap: clamp(90px, 3vw, 32px);
+    margin-top: clamp(24px, 3vw, 70px);
 
     @include tablet-down {
       grid-template-columns: 1fr;
@@ -56,62 +56,61 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(16px, 1.5vw, 24px);
   position: relative;
 
   &__visual {
     position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  &__orbit {
-    position: absolute;
-    top: 8%;                                    // ← сдвинуто вверх
-    left: 8%;                                   // ← сдвинуто влево
-    width: clamp(240px, 24vw, 430px);           // ← минимум 240
-    height: auto;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    animation: spin 30s linear infinite;
-
-    @media (max-width: 479px) {
-      top: 8%;                                  // ещё выше на мобилке
-      left: 8%;                                 // ещё левее
-      width: 240px;
-    }
+    // padding только сверху/по бокам, снизу 0
+    padding: clamp(50px, 7vw, 100px) clamp(50px, 7vw, 100px) 0;
+    overflow: visible;
   }
 
   &__photo {
     position: relative;
     width: clamp(140px, 14vw, 240px);
-    height: auto;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: visible;
     z-index: 2;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      background-image: var(--orbit);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: -1;
+      animation: spin 30s linear infinite;
+      transform-origin: center center;
+    }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       filter: grayscale(100%);
+      border-radius: 50%;
+      display: block;
     }
   }
 
   &__title {
-    position: absolute;
-    bottom: calc(15% - 15px);                    // ← сдвинуто вниз на 15px
     display: inline-block;
+    // ровно 10px от низа фото (== низа .solution-card__visual)
+    margin-top: 10px;
     padding: 5px clamp(12px, 1.4vw, 20px);
     background-color: $color-dark;
     color: $color-white;
     font-size: $fs-h3-fluid;
     font-weight: $fw-regular;
     white-space: nowrap;
+    z-index: 3;
   }
 
   &:nth-child(1),
