@@ -11,8 +11,7 @@
   // ===== Top: заголовок + спираль + стрелки =====
   &__top {
     display: flex;
-    align-items: stretch;              // растягиваем детей по высоте
-    justify-content: space-around;     // ← как ты просила
+    justify-content: space-around;   
     gap: clamp(32px, calc(23.84px + 2.092vw), 64px);
     margin-bottom: clamp(24px, calc(21.96px + 0.523vw), 32px);
 
@@ -26,8 +25,7 @@
   &__main {
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, calc(12.94px + 0.784vw), 24px);
-    min-width: 0;
+    gap: clamp(40px, calc(24px + 2.19vw), 80px);
   }
 
   &__title {
@@ -37,8 +35,8 @@
     letter-spacing: -0.02em;
     color: $color-white;
 
-    @include mobile-down {
-      text-align: center;
+    @include tablet-down {
+      text-align: left;
     }
   }
 

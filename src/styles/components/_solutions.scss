@@ -36,6 +36,7 @@
 
     @include tablet-down {
       order: -1;
+      align-self: flex-start;  
     }
   }
 
