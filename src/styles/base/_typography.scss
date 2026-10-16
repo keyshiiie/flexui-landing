@@ -40,9 +40,14 @@
 // ============================================
 // ВЫДЕЛЕНИЕ ФОНОМ
 // ============================================
+// padding: вертикаль 5→8px, горизонталь 10→16px на диапазоне 390→1920.
+//   vertical:   slope = 3/1530 = 0.001961 → 0.196vw,  intercept = 5 - 0.001961*390 = 4.24px
+//   horizontal: slope = 6/1530 = 0.003922 → 0.392vw,  intercept = 10 - 0.003922*390 = 8.47px
 .highlight {
   display: inline-block;
-  padding: clamp(5px, 0.5vw, 8px) clamp(10px, 1vw, 16px);
+  padding:
+    clamp(5px, calc(4.24px + 0.196vw), 8px)
+    clamp(10px, calc(8.47px + 0.392vw), 16px);
   margin: 0 -4px;
   background-color: $color-dark;
   color: $color-white;

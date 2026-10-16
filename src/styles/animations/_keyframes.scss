@@ -1,0 +1,43 @@
+// ============================================
+// ГЛОБАЛЬНЫЕ KEYFRAMES
+// ============================================
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+@media (prefers-reduced-motion: reduce) {
+  // Секции: бесконечные анимации
+  .marquee__track,
+  .services__spiral,
+  .solutions__circle,
+  .stats__circle,
+  .reviews__spiral,
+  .solution-card__photo::before,
+
+  // Hero: бесконечные анимации
+  .hero__visual,                      // ← вместо .hero__spiral и .hero__photo-wrapper
+  .hero__star--left,
+  .hero__star--right,
+  .hero__title .highlight:first-child,
+  .hero__title .highlight:last-child {
+    animation: none !important;
+  }
+
+  // Hero: появление — вернуть видимость.
+  // Без этого .hero__visual и .hero__content > * останутся opacity: 0,
+  // потому что мы только что снесли их анимации.
+  .hero__visual,
+  .hero__content > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

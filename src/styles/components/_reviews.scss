@@ -3,7 +3,7 @@
 
 .reviews {
   background-color: $color-dark;
-  padding: clamp(60px, 7vw, 120px) 0;
+  padding: clamp(60px, calc(44.71px + 3.922vw), 120px) 0;
   overflow: visible;
 
   &__container { @include container; }
@@ -12,8 +12,8 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: clamp(32px, 5vw, 64px);
-    margin-bottom: clamp(24px, 2.5vw, 32px);
+    gap: clamp(32px, calc(23.84px + 2.092vw), 64px);
+    margin-bottom: clamp(24px, calc(21.96px + 0.523vw), 32px);
 
     @include tablet-down {
       flex-direction: column;
@@ -41,10 +41,10 @@
   }
 
   &__spiral {
-    width: clamp(140px, 12vw, 280px);
+    width: clamp(140px, calc(104.31px + 9.15vw), 280px);
     height: auto;
     flex-shrink: 0;
-    animation: reviews-spin 20s linear infinite;
+    animation: spin 20s linear infinite;
 
     @include mobile-down {
       order: 1;
@@ -53,17 +53,17 @@
 
   &__controls {
     display: flex;
-    margin-left: 14.5%;
-    gap: 8px;
-    margin-bottom: clamp(24px, 2.5vw, 32px);
+    margin-left: $reviews-controls-offset;
+    gap: $gap-xs;
+    margin-bottom: clamp(24px, calc(21.96px + 0.523vw), 32px);
 
     @include mobile-down { margin-left: 0; }
   }
 
   &__arrow {
     @include flex-center;
-    width: clamp(40px, 3.5vw, 50px);
-    height: clamp(40px, 3.5vw, 50px);
+    width: clamp(40px, calc(37.45px + 0.654vw), 50px);
+    height: clamp(40px, calc(37.45px + 0.654vw), 50px);
     background-color: $color-white;
     color: $color-dark;
     border: none;
@@ -122,15 +122,14 @@
   position: relative;
   width: 100%;
 
-  // Разный padding по сторонам: подгоняем контент ВНУТРЬ наклонной svg-рамки.
-  // top / right / bottom / left — значения подобраны под наклон линий svg.
+  // padding подогнан под наклонную svg-рамку.
+  // top  40→90,  right = 10 (фикс), bottom 20→230, left 10→150.
   padding:
-    clamp(40px, 5vw, 90px)          // top
-    clamp(10px, 4vw, 10px)          // right
-    clamp(20px, 11vw, 230px)        // bottom — больше, чтобы автор не наезжал на нижнюю линию
-    clamp(10px, 6vw, 150px);        // left — больше из-за "ступеньки" svg слева
+    clamp(40px, calc(27.25px + 3.268vw), 90px)
+    10px
+    clamp(20px, calc(-33.53px + 13.726vw), 230px)
+    clamp(10px, calc(-25.69px + 9.15vw), 150px);
 
-  // Фон-svg растягивается ровно по размерам карточки
   &__bg-svg {
     position: absolute;
     inset: 0;
@@ -145,24 +144,24 @@
     padding: 40px 24px 90px 40px;
   }
 
-  // Контент в потоке — задаёт высоту карточки
   &__content {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: clamp(12px, 1.5vw, 24px);
-    padding-bottom: clamp(90px, 1.5vw, 10px);
+    gap: clamp(12px, calc(8.94px + 0.784vw), 24px);
+    padding-bottom: clamp(80px, calc(-10.39px + 5.229vw), 90px);
+    margin-right: clamp(10px, calc(-7.84px + 4.575vw), 80px);
   }
 
   &__quote {
-    width: clamp(40px, 4vw, 70px);
+    width: clamp(40px, calc(32.35px + 1.961vw), 70px);
     height: auto;
     margin-bottom: $gap-sm;
   }
 
   &__text {
-    font-size: clamp(16px, 1.6vw, 26px);
+    font-size: clamp(16px, calc(13.45px + 0.654vw), 26px);
     font-weight: $fw-regular;
     color: $color-white;
   }
@@ -170,13 +169,13 @@
   &__author {
     display: flex;
     align-items: center;
-    gap: clamp(12px, 1.5vw, 24px);
-    margin-top: clamp(20px, 2vw, 32px);
-    padding-top: clamp(12px, 1.5vw, 24px);
+    gap: clamp(12px, calc(8.94px + 0.784vw), 24px);
+    margin-top: clamp(20px, calc(16.94px + 0.784vw), 32px);
+    padding-top: clamp(12px, calc(8.94px + 0.784vw), 24px);
   }
 
   &__logo {
-    width: clamp(100px, 12vw, 200px);
+    width: clamp(100px, calc(74.51px + 6.536vw), 200px);
     height: auto;
     object-fit: contain;
     border-right: 1px solid $color-white;
@@ -189,7 +188,7 @@
   }
 
   &__name {
-    font-size: clamp(16px, 1.6vw, 26px);
+    font-size: clamp(16px, calc(13.45px + 0.654vw), 26px);
     font-weight: $fw-black;
     color: $color-white;
   }
@@ -198,11 +197,6 @@
     font-size: $fs-h5-fluid;
     color: rgba($color-white, 0.7);
   }
-}
-
-@keyframes reviews-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
 }
 
 .reviews .highlight { transform: rotate(2deg); }

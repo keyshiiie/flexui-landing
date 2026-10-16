@@ -2,16 +2,11 @@
 @use '../abstracts/mixins' as *;
 
 .clients {
-  background-color: $color-dark;
-  padding: clamp(40px, 6vw, 120px) 0;
-  transform: rotate(2deg);
-  margin: clamp(32px, 4vw, 60px) -20px;
-  width: calc(100% + 40px);
+  @include full-bleed;
 
-  @include mobile-down {
-    margin: 32px -8px;
-    width: calc(100% + 16px);
-  }
+  background-color: $color-dark;
+  padding: clamp(40px, calc(19.61px + 5.229vw), 120px) 0;
+  transform: rotate(2deg);
 
   &__container { @include container; }
 
@@ -19,7 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: clamp(16px, 2vw, 30px);
+    gap: clamp(16px, calc(12.43px + 0.915vw), 30px);
     flex-wrap: wrap;
 
     @include tablet-down { justify-content: center; gap: $gap-lg; }
@@ -35,7 +30,7 @@
 
   &__logo {
     height: auto;
-    max-width: clamp(100px, 12vw, 220px);
+    max-width: clamp(100px, calc(69.41px + 7.843vw), 220px);
     object-fit: contain;
     opacity: 0.7;
     transition: opacity $transition-fast;

@@ -32,6 +32,11 @@
   margin: 0 auto;
   padding-left: $container-padding;
   padding-right: $container-padding;
+
+  @include desktop-up {
+    padding-left: $container-padding-wide;
+    padding-right: $container-padding-wide;
+  }
 }
 
 // ============================================
@@ -116,9 +121,14 @@
   &:hover { opacity: 0.6; }
 }
 
+// padding: вертикаль 12→17px, горизонталь 18→24px на 390→1920
+//   vertical:   slope=0.003268 → 0.327vw,  intercept = 10.73px
+//   horizontal: slope=0.003922 → 0.392vw,  intercept = 16.47px
 @mixin cta-button {
   display: inline-block;
-  padding: clamp(12px, 1vw, 17px) clamp(18px, 1.5vw, 24px);
+  padding:
+    clamp(12px, calc(10.73px + 0.327vw), 17px)
+    clamp(18px, calc(16.47px + 0.392vw), 24px);
   background-color: $color-dark;
   color: $color-white;
   font-size: $fs-h5-fluid;
@@ -128,8 +138,11 @@
   &:hover { opacity: 0.85; }
 }
 
-@media (max-width: 1640px) and (min-width: 1440px) {
-  body {
-    zoom: 0.75;
-  }
+// ============================================
+// FULL-BLEED
+// ============================================
+@mixin full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
