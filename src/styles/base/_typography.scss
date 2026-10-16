@@ -44,15 +44,15 @@
 //   vertical:   slope = 3/1530 = 0.001961 → 0.196vw,  intercept = 5 - 0.001961*390 = 4.24px
 //   horizontal: slope = 6/1530 = 0.003922 → 0.392vw,  intercept = 10 - 0.003922*390 = 8.47px
 .highlight {
-  display: inline-block;
+  display: inline;
   padding:
     clamp(5px, calc(4.24px + 0.196vw), 8px)
     clamp(10px, calc(8.47px + 0.392vw), 16px);
-  margin: 0 -4px;
   background-color: $color-dark;
   color: $color-white;
-  line-height: 1;
-  vertical-align: middle;
+  line-height: 1.6;                // ← важно: увеличить line-height, чтобы плашка не «слипалась» между строками
+  box-decoration-break: clone;     // ← ключ: плашка оборачивает каждую строку отдельно
+  -webkit-box-decoration-break: clone;
 }
 
 .highlight-text { color: $color-white; }

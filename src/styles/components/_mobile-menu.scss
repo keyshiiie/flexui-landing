@@ -125,6 +125,7 @@ body.is-locked {
   overflow: hidden;
 }
 
-@media (min-width: $bp-tablet) {
+// Показываем бургер-меню до 1024 включительно
+@media (min-width: $bp-desktop) {
   .mobile-menu { display: none; }
 }

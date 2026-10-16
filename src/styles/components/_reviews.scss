@@ -8,10 +8,11 @@
 
   &__container { @include container; }
 
-  &__header {
+  // ===== Top: заголовок + спираль + стрелки =====
+  &__top {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: stretch;              // растягиваем детей по высоте
+    justify-content: space-around;     // ← как ты просила
     gap: clamp(32px, calc(23.84px + 2.092vw), 64px);
     margin-bottom: clamp(24px, calc(21.96px + 0.523vw), 32px);
 
@@ -19,12 +20,14 @@
       flex-direction: column;
       gap: $gap-lg;
     }
+  }
 
-    @include mobile-down {
-      flex-direction: column;
-      align-items: center;
-      gap: $gap-md;
-    }
+  // Левая колонка: заголовок + стрелки (флекс-колонка)
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, calc(12.94px + 0.784vw), 24px);
+    min-width: 0;
   }
 
   &__title {
@@ -35,7 +38,6 @@
     color: $color-white;
 
     @include mobile-down {
-      order: 2;
       text-align: center;
     }
   }
@@ -45,19 +47,25 @@
     height: auto;
     flex-shrink: 0;
     animation: spin 20s linear infinite;
+    justify-self: end;
+
+    @include tablet-down {
+      order: -1;
+      justify-self: start;
+    }
 
     @include mobile-down {
-      order: 1;
+      justify-self: center;
     }
   }
 
+  // ===== Стрелки =====
+  // Теперь они — часть .reviews__main, идут под заголовком,
+  // выровнены по левому краю того же блока.
   &__controls {
     display: flex;
-    margin-left: $reviews-controls-offset;
     gap: $gap-xs;
-    margin-bottom: clamp(24px, calc(21.96px + 0.523vw), 32px);
-
-    @include mobile-down { margin-left: 0; }
+    // margin-left больше не нужен
   }
 
   &__arrow {
@@ -78,6 +86,7 @@
     }
   }
 
+  // ===== Слайдер =====
   &__slide {
     height: auto;
 
@@ -117,7 +126,6 @@
     }
   }
 }
-
 .review-card {
   position: relative;
   width: 100%;
@@ -194,7 +202,7 @@
   }
 
   &__role {
-    font-size: $fs-h5-fluid;
+    font-size: clamp(12px, calc(10.47px + 0.392vw), 18px);
     color: rgba($color-white, 0.7);
   }
 }

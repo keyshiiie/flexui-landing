@@ -3,6 +3,10 @@
 // ============================================
 // МЕДИА-ЗАПРОСЫ
 // ============================================
+@mixin laptop-down {
+  @media (max-width: #{$bp-laptop - 1}) { @content; }
+}
+
 @mixin wide-down {
   @media (max-width: #{$bp-wide - 1}) { @content; }
 }
@@ -21,6 +25,10 @@
 
 @mixin desktop-up {
   @media (min-width: $bp-desktop) { @content; }
+}
+
+@mixin ultra-down {
+  @media (max-width: #{$bp-ultra - 1}) { @content; }
 }
 
 // ============================================

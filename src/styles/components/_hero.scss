@@ -103,6 +103,10 @@
     right: 3%;
     width: clamp(40px, calc(29.8px + 2.614vw), 80px);
     animation-delay: 1.2s;
+
+    @include laptop-down {
+      top: 0%;
+    }
   }
 
   // ===== Контент =====

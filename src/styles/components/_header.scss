@@ -36,7 +36,7 @@
     height: auto;
   }
 
-  // Навигация
+  // Навигация — скрываем до 1024 включительно
   &__nav {
     @include desktop-down { display: none; }
   }
@@ -100,26 +100,26 @@
     &:hover { background-color: $color-bg; }
   }
 
-  // Кнопки справа
+  // Кнопки справа — скрываем до 1024 включительно
   &__actions {
     display: flex;
     align-items: center;
     gap: clamp(12px, calc(8.94px + 0.784vw), 24px);
 
-    @include tablet-down { display: none; }
+    @include desktop-down { display: none; }   // было tablet-down
   }
 
   &__link { @include cta-link; }
   &__cta  { @include cta-button; }
 
-  // Бургер
+  // Бургер — показываем до 1024 включительно
   &__burger {
     display: none;
     flex-direction: column;
     gap: 5px;
     width: 24px;
 
-    @include tablet-down { display: flex; }
+    @include desktop-down { display: flex; }   // было tablet-down
 
     span {
       display: block;

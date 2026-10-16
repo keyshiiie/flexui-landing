@@ -11,26 +11,36 @@
   &__container { @include container; }
 
   &__list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);   // ≥1024: 6 в ряд
     align-items: center;
-    justify-content: space-between;
+    justify-items: center;
     gap: clamp(16px, calc(12.43px + 0.915vw), 30px);
-    flex-wrap: wrap;
 
-    @include tablet-down { justify-content: center; gap: $gap-lg; }
-    @include mobile-down  { gap: $gap-md; }
+    // 768–1023: 3 в ряд
+    @include desktop-down {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $gap-lg;
+    }
+
+    // ≤479 (mobile): оставляем 3 колонки как ты хотела
+    @include mobile-down {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $gap-md;
+    }
   }
 
   &__item {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    width: 100%;
   }
 
   &__logo {
     height: auto;
     max-width: clamp(100px, calc(69.41px + 7.843vw), 220px);
+    width: 100%;
     object-fit: contain;
     opacity: 0.7;
     transition: opacity $transition-fast;
