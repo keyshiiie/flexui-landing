@@ -1,43 +1,46 @@
-# Astro Starter Kit: Minimal
+# FlexUI | Full-Service Webflow Agency
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Стильный, полностью адаптивный лендинг для digital-агентства, разработанный на фреймворке Astro. Проект включает сложные кастомные анимации, интерактивные элементы и оптимизированную загрузку графики.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🔗 Демо
+**[Посмотреть живой сайт](https://keyshiiie.github.io/flexui-landing/)**
 
-## 🚀 Project Structure
+## ✨ Ключевые особенности
+*   **Адаптивная верстка:** Плавное масштабирование интерфейса от мобильных устройств до широких экранов с помощью CSS `clamp()` и медиа-запросов.
+*   **Продвинутые анимации:** Анимации появления элементов при скролле, бегущая строка (marquee), вращение декоративных элементов и анимированные счетчики с помощью GSAP (ScrollTrigger).
+*   **Интерактивные компоненты:** Слайдер отзывов, реализованный с помощью библиотеки Swiper.js.
+*   **Оптимизация графики:** Использование векторной графики (SVG) для иконок и декора, а также компонента `<Image />` из Astro для оптимизации фотографий (WebP).
+*   **Архитектура стилей:** SCSS с использованием методологии BEM, глобальных переменных и миксинов для удобной поддержки проекта.
+*   **Мобильное меню:** Выпадающие списки навигации на десктопе и бургер-меню на мобильных устройствах.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠 Стек технологий
+*   **Фреймворк:** [Astro](https://astro.build/)
+*   **Стилизация:** SCSS (Sass), BEM, CSS-переменные
+*   **Анимации:** [GSAP](https://gsap.com/) + ScrollTrigger
+*   **Слайдер:** [Swiper.js](https://swiperjs.com/)
+*   **Шрифты:** [Fontsource](https://fontsource.org/) (Inter)
+*   **Деплой:** GitHub Pages
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🚀 Как запустить локально
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+1. Склонируйте репозиторий:
+   ```bash
+   git clone https://github.com/keyshiiie/flexui-landing.git
+   ```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+2. Перейдите в папку проекта:
+  ```bash
+  cd flexui-landing
+  ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+3. Установите зависимости:
+  ```bash
+  npm install
+  ```
 
-## 🧞 Commands
+4. Запустите сервер разработки:
+  ```bash
+  npm run dev
+  ```
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+5. Откройте http://localhost:4321 в вашем браузере.
