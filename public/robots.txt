@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://keyshiiie.github.io/flexui-landing/sitemap-index.xml

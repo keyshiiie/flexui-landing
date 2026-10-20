@@ -10,7 +10,7 @@ const { icon, title, description } = Astro.props;
 
 <article class="service-card">
   <div class="service-card__icon">
-    <img src={icon.src} alt="" width="60" height="60" />
+    <img src={icon.src} alt={`${title} icon`} width="60" height="60" />
   </div>
 
   <h3 class="service-card__title">{title}</h3>
